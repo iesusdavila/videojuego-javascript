@@ -4,6 +4,9 @@ const btnup = document.querySelector("#up");
 const btndown = document.querySelector("#down");
 const btnleft = document.querySelector("#left");
 const btnright = document.querySelector("#right");
+const showLives = document.querySelector("#lives");
+const showTime = document.querySelector("#time");
+const showRecord = document.querySelector("#record");
 
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
@@ -19,6 +22,9 @@ let elementsSize;
 let level = 0;
 let lives = 3;
 let enemiesPositions = [];
+let timeStart;
+let timePlayer;
+let timeInterval;
 
 const playerPosition = {
   x: undefined,
@@ -39,6 +45,12 @@ function startGame() {
     playerWin();
     return;
   }
+
+  if (!timeStart) {
+    timeStart = Date.now();
+    timeInterval = setInterval(viewTime, 100);
+  }
+
   const arraymap = map.trim().split("\n");
 
   arraymap.forEach(
@@ -85,8 +97,8 @@ function startGame() {
 
 function setCanvasSize() {
   window.innerHeight > window.innerWidth
-    ? (canvasSize = window.innerWidth * 0.8)
-    : (canvasSize = window.innerHeight * 0.8);
+    ? (canvasSize = window.innerWidth * 0.7)
+    : (canvasSize = window.innerHeight * 0.7);
 
   canvas.setAttribute("width", canvasSize + 8);
   canvas.setAttribute("height", canvasSize + 15);
@@ -122,6 +134,20 @@ function movePlayer() {
     }
   }
   game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
+
+  viewLives();
+  viewTime();
+  viewRecord();
+}
+
+function viewTime() {
+  showTime.innerHTML = Date.now() - timeStart;
+}
+
+function viewLives() {
+  showLives.innerHTML = "";
+  for (let numLives = 1; numLives <= lives; numLives++)
+    showLives.innerHTML += emojis["HEART"];
 }
 
 function restoreLevel() {
@@ -133,6 +159,7 @@ function restoreLevel() {
 
 function playerLoser() {
   level = 0;
+  timeStart = undefined;
   restoreEnemyAndGift();
   playerPosition.x = undefined;
   playerPosition.y = undefined;
@@ -154,6 +181,27 @@ function restoreEnemyAndGift() {
 
 function playerWin() {
   console.log("GANO ESTE PELAVERGA");
+  verifyRecord();
+  clearInterval(timeInterval);
+  //playerLoser();
+}
+
+function viewRecord() {
+  showRecord.innerHTML = localStorage.getItem("miRecord");
+}
+
+function verifyRecord() {
+  let recordPersonal = localStorage.getItem("miRecord");
+  timePlayer = Date.now() - timeStart;
+
+  if (!recordPersonal) {
+    localStorage.setItem("miRecord", timePlayer);
+    showRecord.innerHTML = timePlayer;
+  }
+
+  if (timePlayer < recordPersonal) {
+    localStorage.setItem("miRecord", timePlayer);
+  }
 }
 
 function moveByKeys(event) {

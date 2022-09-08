@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: indigo;
+  background-color: #0a070b;
   color: #fff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 0;
@@ -13,16 +13,16 @@ body {
 .game-container {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-evenly;
   height: 100vh;
   width: 100vw;
 }
 
 canvas {
-  border: 4px solid #ff6600;
+  border: 4px solid #b20ee8;
   border-radius: 8px;
-  background-color: #feff9d;
+  background-color: #c929ff;
 }
 
 .btns {
@@ -34,9 +34,9 @@ canvas {
 }
 
 button {
-  background-color: #fdef05;
+  background-color: #a0e80e;
   border-radius: 8px;
-  border-color: #ff6600;
+  border-color: #699c03;
   font-family: inherit;
   margin: 0;
   padding: 5px 20px;
@@ -48,16 +48,18 @@ button:not(:last-child) {
 
 .messages {
   display: flex;
-  flex-wrap: wrap;
   margin: 0 auto;
   width: 80%;
-  max-width: 460px;
+  max-width: 520px;
+  justify-content: center;
+  align-items: center;
 }
 
 p {
-  display: block;
+  display: inline;
   margin: 0;
   width: 100%;
+  font-size: 20px;
 }
 
 @media (max-width: 440px) {

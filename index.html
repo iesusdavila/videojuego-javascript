@@ -11,6 +11,15 @@
 
 <body>
   <div class="game-container">
+    <div class="messages">
+      <p>Vidas: <span id="lives"></span></p>
+      <p>Tiempo: <span id="time"></span></p>
+      <p>Record: <span id="record"></span></p>
+      <!-- <button id="restoreGame" class="inactive">
+            Reiniciar Juego
+          </button> -->
+    </div>
+
     <canvas id="game"></canvas>
 
     <div class="btns">
@@ -19,11 +28,10 @@
       <button id="left">Izquierda</button>
       <button id="right">Derecha</button>
     </div>
-
-    <div class="messages">
-      <p>Parrafo de Ejemplo</p>
-    </div>
   </div>
+
+  <!-- <a href="./resultados.html" class="results"></a> -->
+
 
   <script src="./maps.js"></script>
   <script src="./game.js"></script>
