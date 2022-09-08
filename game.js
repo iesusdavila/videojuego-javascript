@@ -7,6 +7,7 @@ const btnright = document.querySelector("#right");
 const showLives = document.querySelector("#lives");
 const showTime = document.querySelector("#time");
 const showRecord = document.querySelector("#record");
+const levelsCompleted = document.querySelector("#levelsCompleted");
 
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
@@ -50,6 +51,8 @@ function startGame() {
     timeStart = Date.now();
     timeInterval = setInterval(viewTime, 100);
   }
+
+  levelsCompleted.innerHTML = "Nivel " + (level + 1);
 
   const arraymap = map.trim().split("\n");
 
@@ -141,7 +144,7 @@ function movePlayer() {
 }
 
 function viewTime() {
-  showTime.innerHTML = Date.now() - timeStart;
+  showTime.innerHTML = "⏳ " + (Date.now() - timeStart);
 }
 
 function viewLives() {
@@ -187,7 +190,7 @@ function playerWin() {
 }
 
 function viewRecord() {
-  showRecord.innerHTML = localStorage.getItem("miRecord");
+  showRecord.innerHTML = emojis["WIN"] + localStorage.getItem("miRecord");
 }
 
 function verifyRecord() {
@@ -240,7 +243,7 @@ function moveByKeys(event) {
 }
 
 function moveUp() {
-  if (!(playerPosition.y - elementsSize < 0)) {
+  if (!(playerPosition.y - elementsSize < elementsSize)) {
     playerPosition.y -= elementsSize;
   }
   startGame();

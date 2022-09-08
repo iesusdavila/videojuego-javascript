@@ -38,28 +38,40 @@ button {
   border-radius: 8px;
   border-color: #699c03;
   font-family: inherit;
-  margin: 0;
+  font-size: 18px;
   padding: 5px 20px;
-  width: 100px;
+  width: 140px;
+  font-weight: 600;
 }
+
 button:not(:last-child) {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .messages {
   display: flex;
   margin: 0 auto;
-  width: 80%;
-  max-width: 520px;
+  width: 100%;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 p {
   display: inline;
   margin: 0;
-  width: 100%;
   font-size: 20px;
+  font-weight: bold;
+  color: #c929ff;
+}
+
+p:nth-child(2) {
+  margin: 0 20px;
+}
+
+span {
+  font-weight: normal;
+  color: #a0e80e;
 }
 
 @media (max-width: 440px) {
