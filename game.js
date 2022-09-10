@@ -243,7 +243,7 @@ function moveByKeys(event) {
 }
 
 function moveUp() {
-  if (!(playerPosition.y - elementsSize < elementsSize)) {
+  if (!(playerPosition.y.toFixed(3) - elementsSize <= elementsSize - 1)) {
     playerPosition.y -= elementsSize;
   }
   startGame();
